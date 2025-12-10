@@ -9,6 +9,7 @@
 #include "TASK3.H"
 
 #include <iostream>
+#include <cstdlib>
 
 namespace TASK3{
 
