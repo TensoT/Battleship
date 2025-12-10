@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1763561664 source:/home/ubuntu/10_WORKSPACES/BATTLESHIP/Battleship/SIMPLESOCKET.C
+	<iostream>
+	<cstdio>
+	<cstring>
+	<string>
+	<sys/socket.h>
+	<arpa/inet.h>
+	<netdb.h>
+	<unistd.h>
+	<sys/types.h>
+	<netinet/in.h>
+	<cstdio>
+	<cstdlib>
+	<cstring>
+	<cerrno>
+	<ctime>
+	"SIMPLESOCKET.H"
+
+1763561664 /home/ubuntu/10_WORKSPACES/BATTLESHIP/Battleship/SIMPLESOCKET.H
+	<string>
+	<arpa/inet.h>
+
+1763562513 source:/home/ubuntu/10_WORKSPACES/BATTLESHIP/Battleship/TASK3.C
+	"TASK3.H"
+	<iostream>
+	<cstdlib>
+
+1763561664 /home/ubuntu/10_WORKSPACES/BATTLESHIP/Battleship/TASK3.H
+	<string>
+
