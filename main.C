@@ -31,4 +31,4 @@ int main(){
 
 
 
-//Änderung 2
+//AEnderung  10.12.2025
