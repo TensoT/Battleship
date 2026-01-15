@@ -9,7 +9,6 @@
 #include "TASK3.H"
 
 #include <iostream>
-#include <cstdlib>
 
 namespace TASK3{
 
@@ -138,7 +137,7 @@ bool World::placeShips(){
 }
 
 void World::removeAllBlockCoordFromShip(Ship *s){
-	for(int i; i < s->nmbBlocks_; i++){
+	for(int i=0; i < s->nmbBlocks_; i++){
 		s->blocks_[i]->x_ = -1;
 		s->blocks_[i]->y_ = -1;
 		s->blocks_[i]->state_ = BLOCK_CLEAR;

@@ -33,8 +33,6 @@ C++ client example using sockets
 
 #include "SIMPLESOCKET.H"
 
-using namespace std;
-
 TCPclient::TCPclient(){
 	sock = -1;
 	port = 0;
@@ -199,6 +197,206 @@ string TCPserver::myResponse(string input){
 
 
 
+
+
+
+
+
+
+
+/*
+using namespace std;
+
+TCPclient::TCPclient(){
+	sock = -1;
+	port = 0;
+	address = "";
+}
+
+bool TCPclient::conn(string address , int port){
+	//create socket if it is not already created
+	if(sock == -1){
+		//Create socket
+		sock = socket(AF_INET , SOCK_STREAM , 0);
+		if (sock == -1){
+			perror("Could not create socket");
+		}
+
+		cout<<"Socket created\n";
+	}else { /* OK , nothing  }
+
+	//setup address structure
+	if(inet_addr(address.c_str()) == -1){
+		struct hostent *he;
+		struct in_addr **addr_list;
+
+		//resolve the hostname, its not an ip address
+		if ( (he = gethostbyname( address.c_str() ) ) == NULL){
+			//gethostbyname failed
+			herror("gethostbyname");
+			cout<<"Failed to resolve hostname\n";
+
+			return false;
+		}
+
+		//Cast the h_addr_list to in_addr , since h_addr_list also has the ip address in long format only
+		addr_list = (struct in_addr **) he->h_addr_list;
+
+		for(int i = 0; addr_list[i] != NULL; i++){
+			//strcpy(ip , inet_ntoa(*addr_list[i]) );
+			server.sin_addr = *addr_list[i];
+
+			cout<<address<<" resolved to "<<inet_ntoa(*addr_list[i])<<endl;
+
+			break;
+		}
+	}else{//plain ip address
+		server.sin_addr.s_addr = inet_addr( address.c_str() );
+	}
+
+	server.sin_family = AF_INET;
+	server.sin_port = htons( port );
+
+	//Connect to remote server
+	if (connect(sock , (struct sockaddr *)&server , sizeof(server)) < 0){
+		perror("connect failed. Error");
+		return 1;
+	}
+
+	cout<<"Connected\n";
+	return true;
+}
+
+/**
+Send data to the connected host
+
+bool TCPclient::sendData(string data){
+	//Send some data
+	if( send(sock , data.c_str() , strlen( data.c_str() ) , 0) < 0){
+		perror("Send failed : ");
+		return false;
+	}
+
+	return true;
+}
+
+/**
+Receive data from the connected host
+
+string TCPclient::receive(int size=512){
+	char buffer[size];
+	string reply;
+
+	//Receive a reply from the server
+	if( recv(sock , buffer , sizeof(buffer) , 0) < 0){
+		puts("recv failed");
+	}
+
+	reply = buffer;
+	return reply;
+}
+
+
+
+
+TCPserver::TCPserver(int port, int maxDataSizeRecv){
+	maxDataSizeRecv_ = maxDataSizeRecv;
+	dataRecv_ = new char[maxDataSizeRecv_];
+
+	clintListn_ = socket(AF_INET, SOCK_STREAM, 0); // creating socket
+
+	memset(&ipOfServer_, '0', sizeof(ipOfServer_));
+
+	ipOfServer_.sin_family = AF_INET;
+	ipOfServer_.sin_addr.s_addr = htonl(INADDR_ANY);
+	ipOfServer_.sin_port = htons(port); 		// this is the port number of running server
+
+	bind(clintListn_, (struct sockaddr*)&ipOfServer_ , sizeof(ipOfServer_));
+
+
+}
+
+
+void TCPserver::run(){
+
+	string input, output;
+
+	listen(clintListn_, 20);
+	cout << "Waiting for client..." << endl;
+	clintConnt_ = accept(clintListn_, (struct sockaddr*)NULL, NULL);
+    if (clintConnt_ < 0){
+    perror("accept failed");
+    exit(1);
+    }
+    cout << "Client connected!" << endl;
+	while(1)
+	{
+        memset(dataRecv_, 0, maxDataSizeRecv_);
+
+        ssize_t n = read(clintConnt_,dataRecv_, maxDataSizeRecv_-1);
+        if (n < 0) {
+        perror("read failed");
+        break;
+        }
+        if (n == 0) {
+        cout << "Client closed connection" << endl;
+        break;
+        }
+
+        input = string (dataRecv_, n);
+        while (!input.empty() && (input.back()== '\n' || input.back()=='\r')){
+            input.pop_back();
+ 		}
+
+
+        output = response(input);
+        dataSend_ = output.c_str();
+        ssize_t sent = write(clintConnt_, dataSend_, strlen(dataSend_));
+
+        if (sent < 0){
+        perror("write failed");
+        break;
+        }
+        if (output.compare(0,6, "BYEBYE") == 0){
+        cout << "Asked to close server" << endl;
+        break;
+        }
+        }
+
+
+    close(clintConnt_);
+    cout << "Connection closed" << endl;
+    sleep(1);
+
+}
+
+TCPserver::~TCPserver(){
+	delete [] dataRecv_;
+}
+
+string TCPserver::response(string incomingMsg){
+	string msg;
+	if(incomingMsg.compare(0,6,"BYEBYE") == 0){
+		cout << "asked to close server\n";
+		msg = string("BYEBYE"); // this return value
+		                        // will close server connections
+	}else{
+		msg = myResponse(incomingMsg);
+	}
+
+	cout << "received :" << incomingMsg << endl;
+	cout << "send back:" << msg << endl;
+
+	return msg;
+}
+
+
+string TCPserver::myResponse(string input){
+	return string("NO DATA YET YET YET");
+}
+
+
+*/
 
 
 
