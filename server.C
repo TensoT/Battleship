@@ -21,8 +21,9 @@
 #include <string>
 #include <iostream>
 #include "TASK3.H"
-#include "TASK3.C"
+//#include "TASK3.C"
 //#include <sstream>
+#include "fstream"
 
 
 
@@ -55,6 +56,7 @@ public:
     if (world_) {delete world_;
     }
     world_ = new TASK3::World();
+    count_shots = 0;
     for (int y=0; y < 10; y++){
         for (int x=0; x < 10; x++){
             view_[y][x] = '_';
@@ -97,14 +99,13 @@ protected:
             break;
         case TASK3::GAME_OVER:
             shots_used = count_shots;
-            count_shots = 0;
             count_games += 1;
-            result = "GAME_OVER";
+            result = "GAME_OVER \n\nShoots used: " + to_string(shots_used);
             break;
         default:
             result = "ERROR";
     }
-    return result + "\n\n" + "Shoots used: " + to_string(shots_used) + "\n" + boardString() + "\n";
+    return result + "\n" + boardString() + "\n";
     }
     }
     return "UNKNOWN COMMAND\n";

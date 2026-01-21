@@ -33,7 +33,7 @@ int main() {
 	bool goOn=1;
 
 	int nmb_of_games, count_games;
-    nmb_of_games = 10;
+    nmb_of_games = 100;
     count_games = 0;
 
     string msg_recieved;
@@ -49,11 +49,11 @@ int main() {
 
 
     msg = "NEWGAME\n";
-    cout << "client sends:\n" << msg << endl;
+    //cout << "client sends:\n" << msg << endl;
                 c.sendData(msg);
                 sleep(1);
                 msg_recieved = c.receive(200);
-                cout << "got response:\n" << msg_recieved << endl;
+                //cout << "got response:\n" << msg_recieved << endl;
                 sleep(1);
 
 
@@ -73,7 +73,7 @@ int main() {
 			}
         else {
             msg = string ("NEWGAME\n");
-
+            cout << to_string(count_shots) << endl;
             count_shots = 0;
             for (int i = 0; i < size; i++){
                 for(int j = 0; j< size; j++){
@@ -81,9 +81,9 @@ int main() {
                     }
                 }
              c.sendData(msg);
-             sleep(1);
+             sleep(0);
                 msg_recieved = c.receive(200);
-                cout << "got response:" << msg_recieved << endl;
+                //cout << "got response:" << msg_recieved << endl;
                 sleep(0);
             continue;
             }
@@ -101,13 +101,13 @@ int main() {
                 }
             else {
                 msg = "SHOT " + to_string(x+1) + " " + to_string(y+1) + "\n";
-                cout << "client sends:\n" << msg << endl;
+                //cout << "client sends:\n" << msg << endl;
                 count_shots ++;
                 field[x][y] = 1;
                 c.sendData(msg);
                 sleep(0);
                 msg_recieved = c.receive(200);
-                cout << "got response:\n" << msg_recieved << endl;
+                //cout << "got response:\n" << msg_recieved << endl;
                 sleep(0);}
             }}
             else {
