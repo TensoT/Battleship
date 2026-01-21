@@ -44,7 +44,23 @@ using namespace std;
 
 class MySrv : public TCPserver {
 public:
+
+    int count_shots;
+    int count_games;
+    int shots_used;
+
     MySrv(int port, int bsize) : TCPserver(port, bsize){};
+
+    void newGame(){
+    if (world_) {delete world_;
+    }
+    world_ = new TASK3::World();
+    for (int y=0; y < 10; y++){
+        for (int x=0; x < 10; x++){
+            view_[y][x] = '_';
+            }
+        }
+    }
 
 
 protected:
@@ -53,6 +69,7 @@ protected:
     char cmd[16];
     int x,y;
 
+
     if (sscanf(input.c_str(), "%15s", cmd) == 1){
 
     if (cmd[0] == 'Q' && cmd[1] == 'U' && cmd[2] == 'I' && cmd[3] == 'T'){
@@ -60,11 +77,12 @@ protected:
     }
     if (cmd[0] == 'N' && cmd[1] == 'E' && cmd[2] == 'W' && cmd[3] == 'G' && cmd[4] == 'A' && cmd[5] == 'M' && cmd[6] == 'E'){
     newGame();
-    return boardString() + "NEW GAME STARTED\n";
+    return "NEW GAME STARTED\n" +boardString() + "\n";
     }
     if (sscanf(input.c_str(), "SHOT %d %d", &x, &y)== 2){
     TASK3::ShootResult res = world_->shoot(x,y);
     updateView(x, y, res);
+    count_shots += 1;
 
     string result;
     switch (res) {
@@ -78,33 +96,29 @@ protected:
             result = "SHIP_DESTROYED";
             break;
         case TASK3::GAME_OVER:
+            shots_used = count_shots;
+            count_shots = 0;
+            count_games += 1;
             result = "GAME_OVER";
             break;
         default:
             result = "ERROR";
     }
-    return boardString() + result + "\n";
+    return result + "\n\n" + "Shoots used: " + to_string(shots_used) + "\n" + boardString() + "\n";
     }
     }
     return "UNKNOWN COMMAND\n";
 
     }
 
+
+
 private:
 
     TASK3::World* world_ = nullptr;
     char view_[10][10];
 
-    void newGame(){
-    if (world_) {delete world_;
-    }
-    world_ = new TASK3::World();
-    for (int y=0; y < 10; y++){
-        for (int x=0; x < 10; x++){
-            view_[y][x] = '_';
-            }
-        }
-    }
+
 
     void updateView(int x, int y, TASK3::ShootResult res) {
         if(x < 1 || x > 10 || y < 1 || y > 10) return;
@@ -120,6 +134,7 @@ private:
 
     string boardString(){
     string out;
+    out = "\n";
     for (int y=0; y<10; y++){
         for (int x=0; x < 10; x++){
             out += view_[y][x];
@@ -136,6 +151,9 @@ private:
 int main(){
 	srand(time(nullptr));
 	 MySrv srv(2022,25);
+	 srv.newGame();
+	 srv.count_shots = 0;
+	 srv.count_games = 0;
 	 srv.run();
 
 
