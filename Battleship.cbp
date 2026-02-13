@@ -72,6 +72,10 @@
 		<Unit filename="TASK3.H">
 			<Option target="all" />
 		</Unit>
+		<Unit filename="backup_smart.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="bin/Debug/Battleship">
 			<Option target="all" />
 		</Unit>
@@ -79,13 +83,14 @@
 			<Option compilerVar="CC" />
 			<Option target="all" />
 		</Unit>
-		<Unit filename="client_hunt.cpp" />
-		<Unit filename="client_pattern.cpp" />
-		<Unit filename="client_random.C">
+		<Unit filename="client_hunt.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="client_smarthunt.cpp">
-			<Option target="&lt;{~None~}&gt;" />
+		<Unit filename="client_pattern.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client_random.C">
+			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="main.C">
 			<Option compilerVar="CC" />
