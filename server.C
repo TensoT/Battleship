@@ -21,8 +21,6 @@
 #include <string>
 #include <iostream>
 #include "TASK3.H"
-//#include "TASK3.C"
-//#include <sstream>
 #include "fstream"
 
 
@@ -106,6 +104,7 @@ protected:
             result = "ERROR";
     }
     return result + "\n" + boardString() + "\n";
+    //return result + "\n";
     }
     }
     return "UNKNOWN COMMAND\n";

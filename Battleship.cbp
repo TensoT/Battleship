@@ -79,6 +79,14 @@
 			<Option compilerVar="CC" />
 			<Option target="all" />
 		</Unit>
+		<Unit filename="client_hunt.cpp" />
+		<Unit filename="client_pattern.cpp" />
+		<Unit filename="client_random.C">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client_smarthunt.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="main.C">
 			<Option compilerVar="CC" />
 			<Option target="all" />
