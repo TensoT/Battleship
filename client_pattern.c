@@ -1,8 +1,14 @@
+
 /*
- * client.C
+
+ * client_pattern
+
  *
- *  Created on: 11.09.2019
- *      Author: aml
+
+ *  Created on: 13.02.2026
+
+ *      Author: TensoT
+
  */
 
 #include <string>

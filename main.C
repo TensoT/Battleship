@@ -1,8 +1,8 @@
 //============================================================================
 // Name        : INF3_Prak.cpp
-// Author      :
+// Author      :    TensoT
 // Version     :
-// Copyright   : Your copyright notice
+// Copyright   :  copyright notice
 // Description : Hello World in C, Ansi-style
 //============================================================================
 
